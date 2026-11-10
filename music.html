@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Music | Ava Trento</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="music.html">My Music</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <h2>My Listening Habits</h2>
+
+    <img class="profile" src="images/spotify_2025.jpg" alt="Photo of my 2025 top spotify artists and songs" width="300">
+
+    <p>Music takes up a big part of every week, and Spotify makes it easy to see just how much. 
+        Spotify has a feature that allows me to view my listening statistics over time. Over the 
+        past five weeks, I listened for a total of 6,524 minutes, which works out to about 22 hours 
+        per week, or a little over three hours every day. The chart below shows my listening for each week.</p>
+
+    <p>The busiest listening week was October 12 to 18, where I listened for 1,557 minutes, and the quietest 
+        was October 19 to 25, at 1,085 minutes. These minutes still add up to more than 18 hours of music, 
+        so I would still say my headphones really are always on. Most weeks stay between 1,200 and 1,400 
+        minutes, which tells me that listening to music has truly become a regular habit for me, and I 
+        don't do many things without music.</p>
+
+    <p>When I listen to music, I pay attention to the instrumentation, song structure, and lyricism. I also
+         make sure to pay attention to the details, such as harmonies and how a singer shapes a phrase, to 
+         make sure that I understand the full meaning of a song. This is probably why my taste is so eclectic,
+          because I like finding out how different artists and genres convey emotions using the same techniques 
+          in their own way.</p>
+
+    <p>I think one of the main reasons I interpret music in this way is because of my dad. His brain works the same 
+        way mine does, so when I was growing up he showed me a lot of his favorite artists and explained why he appreciates
+         their music. He was born in 1969, so the artists he loves aren't always popular with people my age group 
+         (he likes to call me an "old soul"), but that hasn't prevented me from developing my own unique taste. </p>
+
+    <p>Overall, music plays a central role in my daily life, and I'm grateful to enjoy such a rich variety of artists and 
+        genres that inspire me and make me who I am.</p>
+
+    <h2>Minutes Listened Per Week</h2>
+    <div id="chart"></div>
+
+    <h2>Five of my Current Favorite Songs</h2>
+    <ul>
+      <li>Somebody to Love - Queen</li>
+      <li>In Your Atmosphere - John Mayer</li>
+      <li>(One of Those) Crazy Girls - Paramore</li>
+      <li>Edge of Desire - John Mayer</li>
+      <li>Leader of the Band - Dan Fogelberg</li>
+    </ul>
+  </main>
+
+  <footer id="contact">
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:trento.a@northeastern.edu">Email me</a></li>
+      <li><a href="https://github.com/ava-tre">GitHub</a></li>
+      <li><a href="https://open.spotify.com/user/atrento24">Spotify</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const data = [
+      { week: "Oct 5-11", minutes: 1242 },
+      { week: "Oct 12-18", minutes: 1557 },
+      { week: "Oct 19-25", minutes: 1085 },
+      { week: "Oct 26 - Nov 1", minutes: 1279 },
+      { week: "Nov 2-8", minutes: 1361 }
+    ];
+
+    // Make the drawing area
+    const svg = d3.select("#chart")
+      .append("svg")
+      .attr("width", 600)
+      .attr("height", 240)
+      .attr("font-family", "Georgia, serif")
+      .attr("fill", "#12332e");
+
+    // One bar for each week (same blue as the links)
+    svg.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", 130)
+      .attr("y", (d, i) => i * 45 + 10)
+      .attr("width", d => d.minutes / 4)
+      .attr("height", 30)
+      .attr("fill", "#1f5fbf");
+
+    // Week labels on the left
+    svg.selectAll(".label")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "label")
+      .attr("x", 0)
+      .attr("y", (d, i) => i * 45 + 30)
+      .attr("font-size", 14)
+      .text(d => d.week);
+
+    // Minute totals at the end of each bar
+    svg.selectAll(".value")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "value")
+      .attr("x", d => 130 + d.minutes / 4 + 5)
+      .attr("y", (d, i) => i * 45 + 30)
+      .attr("font-size", 14)
+      .text(d => d.minutes);
+  </script>
+
+</body>
+</html>

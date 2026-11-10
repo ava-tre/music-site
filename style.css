@@ -1,0 +1,29 @@
+body {
+    font-family: Georgia, serif;
+    background-color: #f3f6f4;
+    color: #12332e;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+nav a {
+    margin-right: 15px;
+    color: #1f5fbf;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+}
+
+img {
+    max-width: 100%;
+    border: 3px solid #12332e;
+}
+
+.profile {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
